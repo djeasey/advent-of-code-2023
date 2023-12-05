@@ -2,13 +2,15 @@ f = open("input.txt", "r")
 lines = f.readlines()
 lines = [line.replace("\n", "") for line in lines]
 
+# Create a list of seeds
 seed_line = lines[0]
 seeds = seed_line.split(" ")[1:]
 seeds = [int(x) for x in seeds]
+
+# Create list of mappings
 new_mapping = True
 mapping_list = []
 mapping = []
-
 for line in lines[2:]:
     if new_mapping:
         mapping = []
@@ -22,6 +24,7 @@ for line in lines[2:]:
         mapping.append([int(x) for x in line])
 mapping_list.append(mapping)
 
+# Find the location each seed maps to and find the minimum
 locations = []
 for seed in seeds:
     current_number = seed

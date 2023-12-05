@@ -1,9 +1,8 @@
-from tqdm import tqdm
-
 f = open("input.txt", "r")
 lines = f.readlines()
 lines = [line.replace("\n", "") for line in lines]
 
+# Create list of seed ranges
 seed_ranges_list = []
 seed_line = lines[0]
 seeds = seed_line.split(" ")[1:]
@@ -12,10 +11,10 @@ for i in range(int(len(seeds) / 2)):
     amount = int(seeds[2 * i + 1])
     seed_ranges_list.append([start, amount])
 
+# Create list of mappings
 new_mapping = True
 mapping_list = []
 mapping = []
-
 for line in lines[2:]:
     if new_mapping:
         mapping = []
@@ -29,6 +28,8 @@ for line in lines[2:]:
         mapping.append([int(x) for x in line])
 mapping_list.append(mapping)
 
+# Start with locations and check if they lead to a valid seed
+# Stop when you get a match since we only care about the min location
 noneFound = True
 while noneFound:
     if i % 1000000 == 0:
