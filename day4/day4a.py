@@ -1,6 +1,6 @@
 import re
 
-f = open("input.txt", "r")
+f = open("day4/input.txt", "r")
 lines = f.readlines()
 lines = [line.replace("\n", "") for line in lines]
 

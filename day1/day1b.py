@@ -1,7 +1,7 @@
 import re
 from word2number import w2n
 
-f = open("input.txt", "r")
+f = open("day1/input.txt", "r")
 lines = f.readlines()
 sum = 0
 for line in lines:
