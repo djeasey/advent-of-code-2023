@@ -83,14 +83,42 @@ new_grid = [["." for i in range(len(lines[0]))] for j in range(len(lines))]
 for i in range(len(path)):
     new_grid[path[i][0]][path[i][1]] = lines[path[i][0]][path[i][1]]
 
-# use the even-ness of the count of |JLS to the left of each empty space to determine if it is trapped
+# determine the start/end letter
+if path[0][0] == path[-2][0]:
+    if path[0][0] == path[1][0]:
+        s_letter = "-"
+    else:
+        if path[0][0] < path[1][0] and path[0][1] < path[-2][1]:
+            s_letter = "F"
+        elif path[0][0] < path[1][0] and path[0][1] > path[-2][1]:
+            s_letter = "7"
+        elif path[0][0] > path[1][0] and path[0][1] < path[-2][1]:
+            s_letter = "L"
+        elif path[0][0] > path[1][0] and path[0][1] > path[-2][1]:
+            s_letter = "J"
+else:
+    if path[0][1] == path[1][1]:
+        s_letter = "|"
+    else:
+        if path[0][1] < path[1][1] and path[0][0] < path[-2][0]:
+            s_letter = "F"
+        elif path[0][1] < path[1][1] and path[0][0] > path[-2][0]:
+            s_letter = "L"
+        elif path[0][1] > path[1][1] and path[0][0] < path[-2][0]:
+            s_letter = "7"
+        elif path[0][1] > path[1][1] and path[0][0] > path[-2][0]:
+            s_letter = "J"
+
+new_grid[path[0][0]][path[0][1]] = s_letter
+
+# use the even-ness of the count of |JL to the left of each empty space to determine if it is trapped
 count_trapped = 0
 for i in range(len(new_grid)):
     for j in range(len(new_grid[0])):
         if new_grid[i][j] == ".":
             count_left = 0
             for k in range(j):
-                if new_grid[i][k] in "|JLS":
+                if new_grid[i][k] in "|JL":
                     count_left += 1
             if count_left % 2 == 1:
                 count_trapped += 1
