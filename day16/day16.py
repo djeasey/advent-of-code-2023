@@ -1,4 +1,5 @@
 from tqdm import tqdm
+
 f = open("day16/input.txt", "r")
 lines = f.readlines()
 lines = [list(line.replace("\n", "")) for line in lines]
@@ -73,9 +74,9 @@ print(num_energised([0, -1], "R"))
 print("PART 2 ANSWER:")
 max_energised = 0
 for i in tqdm(range(len(lines)), desc="Checking Up/Down"):
-    max_energised = max(max_energised,num_energised([-1, i], "D"))
-    max_energised = max(max_energised,num_energised([len(lines), i], "U"))
+    max_energised = max(max_energised, num_energised([-1, i], "D"))
+    max_energised = max(max_energised, num_energised([len(lines), i], "U"))
 for i in tqdm(range(len(lines[0])), desc="Checking Left/Right"):
-    max_energised = max(max_energised,num_energised([i, -1], "R"))
-    max_energised = max(max_energised,num_energised([i, len(lines[0])], "L"))
+    max_energised = max(max_energised, num_energised([i, -1], "R"))
+    max_energised = max(max_energised, num_energised([i, len(lines[0])], "L"))
 print(max_energised)
